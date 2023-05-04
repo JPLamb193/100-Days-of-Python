@@ -17,19 +17,22 @@ nr_numbers = int(input(f"How many numbers would you like?\n"))
 #e.g. 4 letter, 2 symbol, 2 number = g^2jk8&P
 
 totalNr = nr_letters + nr_symbols + nr_numbers
-password = ""
+password = []
 replacedSpots = []
 for x in range(0, totalNr):
     currentLetter = letters[random.randint(0, (len(letters)-1))]
-    password += currentLetter
+    password.append(currentLetter)
 for x in range(0, nr_symbols):
     currentSymbol = symbols[random.randint(0, (len(symbols)-1))]
-    while(True):
+    while True:
         currentReplace = random.randint(0, totalNr)
         if currentReplace in replacedSpots:
             continue
         else:
             break
+        print(currentReplace)
+        print(currentSymbol)
+    password[(currentReplace-1)] = currentSymbol
     replacedSpots.append(currentReplace)
 for x in range(0, nr_numbers):
     currentNr = numbers[random.randint(0, (len(numbers)-1))]
@@ -39,6 +42,7 @@ for x in range(0, nr_numbers):
             continue
         else:
             break
+    password[(currentReplace-1)] = currentNr
     replacedSpots.append(currentReplace)
-print(password)
+print("".join(password))
     
